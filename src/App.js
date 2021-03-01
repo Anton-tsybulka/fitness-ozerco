@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Switch, withRouter, Route } from 'react-router-dom';
+import Routes from './routes/Routes';
+import 'antd/dist/antd.css';
+import { Layout, Menu } from 'antd';
 
-function App() {
+const { Header, Content } = Layout;
+
+const App = (/* { history } */) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switch>
+      {/* <Routes history={history} /> */}
+      <Layout>
+    <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+      <div className="logo" />
+      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
+        <Menu.Item key="1">nav 1</Menu.Item>
+        <Menu.Item key="2">nav 2</Menu.Item>
+        <Menu.Item key="3">nav 3</Menu.Item>
+        <Route path='/' component={() => null} key='1' />
+      </Menu>
+    </Header>
+    <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
+      <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
+        Content
+      </div>
+    </Content>
+  </Layout>
+    </Switch>
   );
-}
+};
 
-export default App;
+export default withRouter(App);
+
+
+
+
+  
